@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const { argv } = require('./argumentsHandler');
 const geocode = require('./geocode/geocode');
+const config = require('./conf/config');
 
 const address = encodeURIComponent(argv.address);
 geocode.geocodeAddress(address)
