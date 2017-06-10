@@ -1,13 +1,20 @@
 const yargs = require('yargs');
-const argsArr = getArgumentsArray();
 
-module.exports.argumentsString =
-    argsArr.reduce((prev, cur) => prev ? `${ prev }%20${ cur }` : cur, '');
+const address = {
+    demand: true,
+    alias: 'a',
+    describe: 'Retrieve weather for this address.',
+    string: true
+};
 
-function getArgumentsArray() {
-    const argv = yargs
-        .demand(1)
+const argv = getArguments();
+
+module.exports.address = encodeURIComponent(argv.address);
+
+function getArguments() {
+    return yargs
+        .options({address})
+        .help()
+        .alias('help', 'h')
         .argv;
-
-    return argv._;
 }

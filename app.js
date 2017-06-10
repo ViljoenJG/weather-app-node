@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 const request = require('request');
-
-const addressString = require('./argumentsHandler').argumentsString;
+const { address } = require('./argumentsHandler');
 
 request({
-    url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + addressString,
+    url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address,
     json: true
 }, handleRequest);
 
