@@ -12,13 +12,12 @@ function getWeatherForLocation(coords) {
         url,
         json: true
     })
-        .then(handleWeatherRequest)
-        .catch(handleRequestError)
+    .then(handleWeatherRequest)
+    .catch(handleRequestError)
 }
 
-function handleRequestError(error) {
-    const error = 'An error occurred when trying to retrieve data. ' +
-        'Please confirm that you have internet connectivity.';
+function handleRequestError() {
+    const error = 'Unable to retrieve weather data. Please check internet connectivity';
 
     return {error};
 }
