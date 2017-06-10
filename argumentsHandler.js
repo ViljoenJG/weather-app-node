@@ -9,7 +9,9 @@ const address = {
 
 const argv = getArguments();
 
-module.exports.address = encodeURIComponent(argv.address);
+module.exports = {
+    argv
+};
 
 function getArguments() {
     return yargs
