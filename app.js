@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const { argv } = require('./argumentsHandler');
 const geocode = require('./geocode/geocode');
+const weather = require('./weather/weather');
 
 const address = encodeURIComponent(argv.address);
 geocode.geocodeAddress(address)
@@ -11,7 +12,7 @@ function getWeatherForLocation(coords) {
         return console.log(coords.error)
     }
 
-    geocode
+    weather
         .getWeatherForLocation(coords)
         .then((resp) => {
             if (resp.error) {
