@@ -5,24 +5,25 @@ const weather = require('./weather/weather');
 
 const address = encodeURIComponent(argv.address);
 geocode.geocodeAddress(address)
-    .then(getWeatherForLocation);
+    .then(getWeatherForLocation)
+    .then((resp) => {
+        if (resp.error) {
+            return console.log(resp.error);
+        }
+
+        console.log(`Temperature: ${ resp.temperature }\u02DAC`);
+        console.log(`Feels like: ${ resp.apparentTemperature }\u02DAC`);
+        console.log(`Wind Speed: ${ resp.windSpeed }km/h`);
+        console.log(`Change for precipitation: ${ resp.precipProbability }%`)
+    });
 
 function getWeatherForLocation(coords) {
     if (coords.error) {
         return console.log(coords.error)
     }
 
-    weather
-        .getWeatherForLocation(coords)
-        .then((resp) => {
-            if (resp.error) {
-                return console.log(resp.error);
-            }
+    console.log(`Weather for: ${ coords.address }`);
 
-            console.log(`Weather for: ${ coords.address }`);
-            console.log(`Temperature: ${ resp.temperature }\u02DAC`);
-            console.log(`Feels like: ${ resp.apparentTemperature }\u02DAC`);
-            console.log(`Wind Speed: ${ resp.windSpeed }km/h`);
-            console.log(`Change for precipitation: ${ resp.precipProbability }%`)
-        })
+    return weather
+        .getWeatherForLocation(coords)
 }
