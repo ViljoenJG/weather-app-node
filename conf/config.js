@@ -6,8 +6,6 @@ if (!key) {
     key = 'no-key'
 }
 
-console.log(key);
-
 module.exports = {
     apiKey: key
 };
