@@ -17,9 +17,12 @@ function handleRequest(resp) {
     }
 
     const result = resp.body.results[0];
-    return `Address: ${ result.formatted_address }\n` +
-        `Latitude: ${ result.geometry.location.lat }\n` +
-        `Longitude: ${ result.geometry.location.lng }`;
+
+    return {
+        address: result.formatted_address,
+        latitude: result.geometry.location.lat,
+        longitude: result.geometry.location.lng
+    };
 }
 
 function handleRequestError(error) {
