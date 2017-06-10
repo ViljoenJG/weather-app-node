@@ -1,16 +1,14 @@
 const request = require('request');
 const { promisify } = require('util');
-const requestAsync = promisify(request);
+const httpRequest = promisify(request);
 
 function geocodeAddress(address) {
-    const cfg = {
+    return httpRequest({
         url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address,
         json: true
-    };
-
-    return requestAsync(cfg)
-        .then(handleRequest)
-        .catch(handleRequestError)
+    })
+    .then(handleRequest)
+    .catch(handleRequestError)
 }
 
 function handleRequest(resp) {
