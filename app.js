@@ -8,6 +8,18 @@ geocode.geocodeAddress(address)
     .then(getWeatherForLocation)
     .then(printWeatherData);
 
+
+function getWeatherForLocation(coords) {
+    if (coords.error) {
+        return console.log(coords.error)
+    }
+
+    console.log(`Weather for: ${ coords.address }`);
+
+    return weather
+        .getWeatherForLocation(coords)
+}
+
 function printWeatherData(resp) {
     if (resp.error) {
         return console.log(resp.error);
